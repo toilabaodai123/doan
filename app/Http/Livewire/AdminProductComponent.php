@@ -25,6 +25,8 @@ class AdminProductComponent extends Component
 	public $longDesc;
 	public $shortDesc;
 	
+	public $productImport;
+	
 	protected $rules=[
 		'productName' => 'required|min:3',
 		'CategoryID' => 'required'
@@ -76,11 +78,12 @@ class AdminProductComponent extends Component
 		session()->flash('success','Thêm thành công!');
 	}
 	
-	public function mount(){
-
+	
+	public function btnReset(){
+		$this->reset();
 	}
 	
-	public function resett(){
-		$this->reset();
+	public function productImport(){
+		dd($this->productImport);
 	}
 }

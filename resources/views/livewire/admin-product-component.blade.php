@@ -32,12 +32,14 @@
                                             <!-- /.table-responsive -->
     </div>
 <div class="row">
+	
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Basic Form Elements
+                                    Bảng nhập thông tin sản phẩm
                                 </div>
                                 <div class="panel-body">
+
                                     <div class="row">
 									@if(session()->has('success'))
 									<div class="alert alert-success">
@@ -45,6 +47,7 @@
                                     </div>
 									@endif
                                         <div class="form-group">
+										
                                             <form role="form" wire:submit.prevent="submit">
 												<div class="form-group">
 												<div class="col-lg-9">
@@ -133,8 +136,9 @@
 													<button type="submit"  style="visibility:hidden" class="btn btn-default">Lưu</button>
 													
 												</div>
-												<button type="submit" class="btn btn-default">Lưu</button>
-												<button type="button" wire:click="resett" class="btn btn-default">Reset</button>
+												<button type="submit" wire:loading.attr="disabled" class="btn btn-default">Lưu</button>
+												<button type="button" wire:click="btnReset" class="btn btn-default">Reset</button>
+												<label wire:loading wire:target="btnReset">Đang reset...</label>
                                             </form>
                                         </div>
 									
@@ -150,4 +154,25 @@
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
+	<div class="row">
+		<div class="col-lg-12">	
+			<div class="panel panel-default">
+                <div class="panel-heading">
+                    Thêm bằng excel
+                </div>
+                <div class="panel-body">	
+					<form wire:submit.prevent="productImport">
+                        <input id="product-import" style="display:none" type="file" wire:model="productImport" >
+						@if($productImport)
+							<label>Sheesh</label>
+						@endif
+						<label for="product-import" class="custom-file-upload" style="background-color:#337ab7;color:white;border: 1px solid #ccc;display: inline-block;padding: 6px 12px;cursor: pointer;">
+							Thêm bằng file excel
+						</label>
+						<button type="submit" class="btn btn-default">Thêm</button>
+					</form>					
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
