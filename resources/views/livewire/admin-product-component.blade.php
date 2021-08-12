@@ -9,6 +9,7 @@
                                                         <th>Tên sản phẩm</th>
                                                         <th>Giá sản phẩm</th>
 														<th>Loại sản phẩm</th>
+														<th>Trạng thái</th>
 														<th>Tùy chọn</th>
                                                     </tr>
                                                     </thead>
@@ -20,8 +21,15 @@
                                                         <td>{{$p->productPrice}}</td>
                                                         <td>{{$p->CategoryID}}</td>
 														<td>
-															<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Xem</button>
-															<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+															@if ( $p->status == 1 )
+																<label style="color:green">Trực tuyến</label>
+															@else
+																<label style="color:gray">Đã xóa</label>
+															@endif
+														</td>
+														<td>
+															<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal{{$p->id}}">Xem</button>
+															<div class="modal fade" id="myModal{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 																									<div class="modal-dialog" role="document">
 																										<div class="modal-content">
 																											<div class="modal-header">
@@ -47,7 +55,7 @@
 																												
 																											</div>
 																											<div class="modal-footer">
-																												<button type="button" class="btn btn-default" data-dismiss="modal">Tắt</button>
+																												<button type="button" class="btn btn-default" data-dismiss="modal">Ẩn</button>
 																												<button type="button" class="btn btn-primary" >Sửa</button>
 																											</div>
 																										</div>
@@ -55,7 +63,7 @@
 																									</div>
 																									<!-- /.modal-dialog -->
 																								</div>															
-															<button type="button" class="btn btn-info">Sửa</button>
+															<button wire:click="editProduct({{$p->id}})" type="button" class="btn btn-info">Sửa</button>
 															<button type="button" class="btn btn-danger">Xóa</button>
 														</td>
                                                     </tr>
@@ -88,9 +96,6 @@
 													<div class="col-lg-9">
 														<label>ID sản phẩm</label>
 														<input class="form-control" id="disabledInput" disabled wire:model="productID" placeholder="ID của sản phẩm">
-														@error('productName')
-															<p class="text-danger">{{$message}}</p>
-														@enderror
 													</div>												
 													<div class="col-lg-6">
 														<label>Tên sản phẩm</label>
@@ -143,7 +148,11 @@
 														Hình ảnh chính sản phẩm
 													</div>
 													<div class="panel-body">
-														<img src="{{asset('storage/images/null.jpg')}}" style="width:100%;height:200px"> </img>
+														@if ($productImage == null)
+															<img src="{{asset('storage/images/null.jpg')}}" style="width:100%;height:200px"> </img>
+														@else
+															<img src="{{asset('storage/images/'.$productImage)}}" style="width:100%;height:200px"> </img>
+														@endif
 													</div>
 													<!-- /.panel-body -->
 												</div>
@@ -154,9 +163,7 @@
 														Chọn hình ảnh
 													</label>
 													<label wire:loading wire:target="productImage">Đang tải...</label>
-													@if($productImage)
-														<img src="{{ $productImage->temporaryUrl() }} " style="width:50px;height:50px">
-													@endif
+																				
 													
                                                 </div>
 												</div>
