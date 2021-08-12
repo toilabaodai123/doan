@@ -20,7 +20,41 @@
                                                         <td>{{$p->productPrice}}</td>
                                                         <td>{{$p->CategoryID}}</td>
 														<td>
-															<button type="button" class="btn btn-success">Xem</button>
+															<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Xem</button>
+															<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+																									<div class="modal-dialog" role="document">
+																										<div class="modal-content">
+																											<div class="modal-header">
+																												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																												<h4 class="modal-title" id="myModalLabel">Thông tin sản phẩm</h4>
+																											</div>
+																											<div class="modal-body">
+																												<label>Tên sản phẩm : {{$p->productName}}</label><br>
+																												<label>Giá sản phẩm : {{$p->productPrice}}</label><br>
+																												<label>Loại sản phẩm : {{$p->CategoryID}}</label><br>
+																												<label>Mô tả ngắn : {{$p->shortDesc}}</label><br>
+																												<label>Mô tả dài : {{$p->longDesc}}</label><br>
+																												
+																												<label>Trạng thái : </label>
+																												@if( $p->status == 1)
+																													<label style="color:green">Trực tuyến</label>
+																												@else
+																													<label style="color:gray">Đã xóa</label>
+																												@endif
+																												<br>
+																												<label>Slug : </label><br>
+																												<label>Tồn kho : </label><br>
+																												
+																											</div>
+																											<div class="modal-footer">
+																												<button type="button" class="btn btn-default" data-dismiss="modal">Tắt</button>
+																												<button type="button" class="btn btn-primary" >Sửa</button>
+																											</div>
+																										</div>
+																										<!-- /.modal-content -->
+																									</div>
+																									<!-- /.modal-dialog -->
+																								</div>															
 															<button type="button" class="btn btn-info">Sửa</button>
 															<button type="button" class="btn btn-danger">Xóa</button>
 														</td>

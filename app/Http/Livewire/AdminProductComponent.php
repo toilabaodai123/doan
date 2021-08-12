@@ -86,4 +86,9 @@ class AdminProductComponent extends Component
 	public function productImport(){
 		dd($this->productImport);
 	}
+	
+	public function test($id){
+		$Product = Product::find($id);
+		dd($Product);
+	}
 }
