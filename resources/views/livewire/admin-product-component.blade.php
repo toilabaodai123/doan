@@ -116,7 +116,7 @@
 														<label>ID sản phẩm</label>
 														<input class="form-control" id="disabledInput" disabled wire:model="productID" placeholder="ID của sản phẩm">
 													</div>												
-													<div class="col-lg-6">
+													<div class="col-lg-9">
 														<label>Tên sản phẩm</label>
 														<input class="form-control" wire:model="productName" placeholder="Nhập tên sản phẩm">
 														@error('productName')
@@ -124,9 +124,9 @@
 														@enderror
 													</div>
 												
-													<div class="col-lg-3">
+													<div class="col-lg-4">
 														
-														<label>Loại sản phẩm</label>
+														<label>Loại sản phẩm cấp 1</label>
 														<select class="form-control" wire:model="CategoryID">
 															<option>Chọn danh mục</option>
 															@foreach($ProductCategories as $Category)
@@ -139,6 +139,17 @@
 
 
 													</div>
+													<div class="col-lg-5">
+														
+														<label>Loại sản phẩm cấp 2</label>
+														<select class="form-control" >
+															<option> </option>
+
+														</select>
+
+
+
+													</div>													
 													<div class="col-lg-9">
 														<label>Mô tả ngắn</label>
 														<input class="form-control" wire:model="shortDesc" placeholder="Nhập mô tả ngắn của sản phẩm">
