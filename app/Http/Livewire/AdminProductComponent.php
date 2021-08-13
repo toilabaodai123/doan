@@ -32,13 +32,12 @@ class AdminProductComponent extends Component
 	
 	protected $rules=[
 		'productName' => 'required|min:3',
-		'CategoryID' => 'required',
-		'productImage' => 'required'
+		'CategoryID' => 'required'
 	];
 	
     public function render()
     {
-		$this->Products=Product::all();
+		$this->Products=Product::where('status',1)->get();
 		$this->ProductCategories = ProductCategory::all();
         return view('livewire.admin-product-component')
 					->layout('layouts.template');
@@ -47,8 +46,7 @@ class AdminProductComponent extends Component
 	public function submit(){
 		//dd($ProductID);
 		if($this->productID == null){
-			$name=$this->productImage->getClientOriginalName();
-			$name2 = date("Y-m-d-H-i-s").'-'.$name;
+
 
 
 			$validatedData = $this->validate();
@@ -59,7 +57,7 @@ class AdminProductComponent extends Component
 			$Product->longDesc = $this->longDesc;
 			$Product->CategoryID = $this->CategoryID;
 			//$this->productImage->storePublicly('images', $name2);
-			$this->productImage->storeAs('images',$name2,'public');
+
 			$Product->save();
 			
 			
@@ -72,12 +70,19 @@ class AdminProductComponent extends Component
 				$ProductModel->save();
 			}
 			
-			
-			$PrimaryImage = new Image();
-			$PrimaryImage->imageName = $name2;
-			$PrimaryImage->imageType = 1; //1 = Hình ảnh chính
-			$PrimaryImage->productID = $ProductID;
-			$PrimaryImage->save();
+			if($this->productImage){
+				$name=$this->productImage->getClientOriginalName();
+				$name2 = date("Y-m-d-H-i-s").'-'.$name;
+				$this->productImage->storeAs('images',$name2,'public');
+				
+				$PrimaryImage = new Image();
+				$PrimaryImage->imageName = $name2;
+				$PrimaryImage->imageType = 1; //1 = Hình ảnh chính
+				$PrimaryImage->productID = $ProductID;
+				$PrimaryImage->save();
+			}
+
+
 			
 			$this->reset();
 			session()->flash('success','Thêm thành công!');
@@ -90,6 +95,19 @@ class AdminProductComponent extends Component
 			$edit->shortDesc = $this->shortDesc;
 			$edit->longDesc = $this->longDesc;
 			$edit->save();
+			
+			if($this->productImage && $this->productImage->getClientOriginalName()!=null ){
+				$name=$this->productImage->getClientOriginalName();
+				$name2 = date("Y-m-d-H-i-s").'-'.$name;
+				$this->productImage->storeAs('images',$name2,'public');
+				
+				$PrimaryImage = new Image();
+				$PrimaryImage->imageName = $name2;
+				$PrimaryImage->imageType = 1; //1 = Hình ảnh chính
+				$PrimaryImage->productID = $this->productID;
+				$PrimaryImage->save();
+			}
+			
 			$this->reset();
 			session()->flash('success','Sửa thành công!');
 		}
@@ -113,18 +131,33 @@ class AdminProductComponent extends Component
 	
 	public function editProduct($id){
 		$editProduct = Product::find($id);
-		$imgEProduct = Image::firstWhere('productID',$id);
+
 		//dd($imgEProduct->imageName);
 		//dd($imgEProduct);
 		
 		$this->productID = $editProduct->id;
+
 		$this->productName = $editProduct->productName;
 		$this->CategoryID = $editProduct->CategoryID;
 		$this->shortDesc = $editProduct->shortDesc;
 		$this->longDesc = $editProduct->longDesc;
 		$this->productPrice = $editProduct->productPrice;
-		$this->productImage = $imgEProduct->imageName;
+		$imgEProduct = Image::where('productID',$id)->get()->last();
+		if($imgEProduct = Image::where('productID',$id)->get()->last()){
+			$this->productImage = $imgEProduct->imageName;
+		}
+		else{
+			$this->productImage=null;
+		}
 		//dd($this->productImage->get('imageName'));
 		
+	}
+	
+	public function deleteProduct($id){
+		$deleteProduct = Product::find($id);
+		$deleteProduct->status = 0;
+		$deleteProduct->save();
+		
+		session()->flash('success','Xóa sản phẩm '.$deleteProduct->productName.' thành công!');
 	}
 }

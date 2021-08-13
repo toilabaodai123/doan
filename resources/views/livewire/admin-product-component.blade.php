@@ -64,7 +64,7 @@
 																									<!-- /.modal-dialog -->
 																								</div>															
 															<button wire:click="editProduct({{$p->id}})" type="button" class="btn btn-info">Sửa</button>
-															<button type="button" class="btn btn-danger">Xóa</button>
+															<button wire:click="deleteProduct({{$p->id}})" type="button" class="btn btn-danger">Xóa</button>
 														</td>
                                                     </tr>
 													@endforeach
