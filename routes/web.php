@@ -5,6 +5,7 @@ use App\Http\Livewire;
 use App\Http\Livewire\AdminPostComponent;
 use App\Http\Livewire\AdminProductComponent;
 use App\Http\Livewire\AdminProductCategoryComponent;
+use App\Http\Livewire\AdminSupplierComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,5 @@ Route::get('/', function () {
 Route::get('/admin-post', AdminPostComponent::class);
 Route::get('/admin-product', AdminProductComponent::class);
 Route::get('/admin-product-category', AdminProductCategoryComponent::class);
+Route::get('admin/suppliers', AdminSupplierComponent::class);
 //Route::get('/admin-dashboard', AdminPostComponent::class);
