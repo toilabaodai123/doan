@@ -133,15 +133,7 @@
                         <a href="{{url('admin/suppliers')}}"><i class="fa fa-sitemap fa-fw"></i>Quản lý nhà cung cấp</a>
                     </li>					
                     <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Quản lý nhập hàng<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">Nhập hàng</a>
-                            </li>
-                            <li>
-                                <a href="#">Nhập hàng bằng file</a>
-                            </li>							
-                        </ul>
+                        <a href="{{url('admin/product-import')}}"><i class="fa fa-sitemap fa-fw"></i>Quản lý nhập hàng</a>
                     </li>
                     <li>
                         <a href="{{url('admin-product-category')}}"><i class="fa fa-sitemap fa-fw"></i>*Quản lý người dùng</a>
