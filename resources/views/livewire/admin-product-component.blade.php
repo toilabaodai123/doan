@@ -62,9 +62,28 @@
 																										<!-- /.modal-content -->
 																									</div>
 																									<!-- /.modal-dialog -->
-																								</div>															
+															</div>															
 															<button wire:click="editProduct({{$p->id}})" type="button" class="btn btn-info">Sửa</button>
-															<button wire:click="deleteProduct({{$p->id}})" type="button" class="btn btn-danger">Xóa</button>
+															<button  data-toggle="modal"  data-target="#myModalDelete{{$p->id}}" type="button"  class="btn btn-danger">Xóa</button>
+															<div class="modal fade" id="myModalDelete{{$p->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+																									<div class="modal-dialog" role="document">
+																										<div class="modal-content">
+																											<div class="modal-header">
+																												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+																												<h4 class="modal-title" id="myModalLabel">Tùy chọn</h4>
+																											</div>
+																											<div class="modal-body">
+																												<label>Bạn có muốn xóa sản phẩm {{$p->productName}} không ?</label>
+																											</div>
+																											<div class="modal-footer">
+																												<button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+																												<button wire:click="deleteProduct({{$p->id}})" type="button" class="btn btn-primary" >Có</button>
+																											</div>
+																										</div>
+																										<!-- /.modal-content -->
+																									</div>
+																									<!-- /.modal-dialog -->
+															</div>															
 														</td>
                                                     </tr>
 													@endforeach
