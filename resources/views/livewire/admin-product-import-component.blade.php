@@ -113,7 +113,7 @@
 													<input wire:model="searchInputProduct" class="form-control" placeholder="Nhập thông tin sản phẩm cần tìm" >
 												</div>
 												<div class="col-lg-3">
-													<select wire:model="selectedProductID">
+													<select class="form-control" wire:model="selectedProductID">
 														<option>Chọn</option>
 														<option value="id">Theo id</option>
 														<option value="name">Theo tên</option>
@@ -142,7 +142,7 @@
 																				<td>{{$p->productName}}</td>
 																				<td>{{$p->productPrice}}</td>
 																				<td>
-																					<button wire:click="addProduct" type="button" class="btn btn-success" >Thêm</button>
+																					<button  wire:click="addProduct({{$p->id}})" type="button" class="btn btn-success" >Thêm</button>
 																					<button type="button" class="btn btn-info" >Xem</button>
 																				</td>
 																			</tr>
@@ -156,9 +156,64 @@
 										</div>
 									</div>
 								</div>
+								<div class="col-lg-12" style="margin-top:30px">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											Thông tin nhập hàng @if($selectedProducts2) @foreach($selectedProducts2 as $s){ $s}  @endforeach @endif
+										</div>
+
+										<div class="panel-body">
+											<div class="row">
+												<div class="form-group">
+													<div class="table-responsive">
+														<table class="table table-bordered table-hover table-striped" >
+															<thead>
+																<tr>
+																	<th>ID Sản phẩm</th>
+																	<th>Tên sản phẩm</th>
+																	<th>Size</th>
+																	<th>Số lượng</th>
+																	<th>Đơn giá</th>
+																	<th>Tùy chọn</th>
+																</tr>
+															</thead>
+															<tbody>
+																	@if($selectedProducts)
+																		@foreach($selectedProducts as $p)
+																			<tr>
+																				<td>{{$p->id}}</td>
+																				<td>{{$p->productName}}</td>
+																				<td>
+																					<select class="form-control">
+																						<option>X</option>
+																					</select>
+																					<button type="button" class="btn btn-success" >+</button>
+																					
+																				</td>
+																				<td>
+																						<input class="form-control" placeholder="Nhập thông tin sản phẩm cần tìm" >
+																				</td>
+																				<td>
+																						<input class="form-control" placeholder="Nhập thông tin sản phẩm cần tìm" >
+																				</td>
+																				<td>
+																					<button type="button" class="btn btn-danger" >Xóa</button>
+																				</td>
+																			</tr>
+																		@endforeach
+																	@endif
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>								
 								<div class="col-lg-9" style="margin-top:20px">
 									<button type="button" wire:click="submit" wire:loading.attr="disabled" class="btn btn-default">Lưu</button>
 									<button type="button" wire:click="resetBtn" wire:loading.attr="disabled" class="btn btn-default">Reset</button>
+									<button type="button" wire:click="test" wire:loading.attr="disabled" class="btn btn-default">Reset</button>
 								</div>								
 							</form>
 						</div>
