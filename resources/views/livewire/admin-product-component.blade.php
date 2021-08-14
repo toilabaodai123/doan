@@ -1,4 +1,4 @@
-<div>
+	<div>
 
     <div class="col-lg-12">
                                             <div class="table-responsive">
@@ -9,6 +9,7 @@
                                                         <th>Tên sản phẩm</th>
                                                         <th>Giá sản phẩm</th>
 														<th>Loại sản phẩm</th>
+														<th>Nhà cung cấp</th>
 														<th>Trạng thái</th>
 														<th>Tùy chọn</th>
                                                     </tr>
@@ -20,6 +21,7 @@
                                                         <td>{{$p->productName}}</td>
                                                         <td>{{$p->productPrice}}</td>
                                                         <td>{{$p->CategoryID}}</td>
+														<td>{{$p->supplierID}}</td>
 														<td>
 															@if ( $p->status == 1 )
 																<label style="color:green">Trực tuyến</label>
@@ -123,7 +125,15 @@
 															<p class="text-danger">{{$message}}</p>
 														@enderror
 													</div>
-												
+													<div class="col-lg-9">
+														<label>Nhà cung cấp</label>
+														<select class="form-control" wire:model="supplierID">
+															<option>Chọn nhà cung cấp</option>
+															@foreach($Suppliers as $s)
+																<option value="{{$s->id}}">{{$s->supplierName}}</option>
+															@endforeach
+														</select>
+													</div>												
 													<div class="col-lg-4">
 														
 														<label>Loại sản phẩm cấp 1</label>

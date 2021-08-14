@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductSize;
 use App\Models\ProductModel;
+use App\Models\Supplier;
 use App\Models\Image;
 use Livewire\WithFileUploads;
 
@@ -14,6 +15,7 @@ class AdminProductComponent extends Component
 {
 	use WithFileUploads;
 	
+	public $Suppliers;
 	public $Products;
 	public $ProductCategories;
 	public $productView;
@@ -25,6 +27,7 @@ class AdminProductComponent extends Component
 	public $CategoryID;
 	public $longDesc;
 	public $shortDesc;
+	public $supplierID;
 	
 	public $productImport;
 	public $uploadedImage;
@@ -39,6 +42,7 @@ class AdminProductComponent extends Component
     {
 		$this->Products=Product::where('status',1)->get();
 		$this->ProductCategories = ProductCategory::all();
+		$this->Suppliers = Supplier::all();
         return view('livewire.admin-product-component')
 					->layout('layouts.template');
     }
@@ -56,6 +60,7 @@ class AdminProductComponent extends Component
 			$Product->shortDesc = $this->shortDesc;
 			$Product->longDesc = $this->longDesc;
 			$Product->CategoryID = $this->CategoryID;
+			$Product->supplierID = $this->supplierID;
 			//$this->productImage->storePublicly('images', $name2);
 
 			$Product->save();
@@ -94,6 +99,7 @@ class AdminProductComponent extends Component
 			$edit->productPrice = $this->productPrice;
 			$edit->shortDesc = $this->shortDesc;
 			$edit->longDesc = $this->longDesc;
+			$edit->supplierID = $this->supplierID;
 			$edit->save();
 			
 			if($this->productImage && $this->productImage->getClientOriginalName()!=null ){
@@ -142,6 +148,7 @@ class AdminProductComponent extends Component
 		$this->shortDesc = $editProduct->shortDesc;
 		$this->longDesc = $editProduct->longDesc;
 		$this->productPrice = $editProduct->productPrice;
+		$this->supplierID = $editProduct->supplierID;
 		$imgEProduct = Image::where('productID',$id)->get()->last();
 		if($imgEProduct = Image::where('productID',$id)->get()->last()){
 			$this->productImage = $imgEProduct->imageName;

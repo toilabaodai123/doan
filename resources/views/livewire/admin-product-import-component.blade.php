@@ -116,6 +116,7 @@
 													<select wire:model="selectedProductID">
 														<option>Chọn</option>
 														<option value="id">Theo id</option>
+														<option value="name">Theo tên</option>
 													</select>
 												</div>
 											</div>
@@ -137,9 +138,9 @@
 																	@if($Products)
 																		@foreach($Products as $p)
 																			<tr>
-																				<td><label>{{$p->id}}</label></td>
-																				<td><label>{{$p->productName}}</label></td>
-																				<td><label>{{$p->productPrice}}</label></td>
+																				<td>{{$p->id}}</td>
+																				<td>{{$p->productName}}</td>
+																				<td>{{$p->productPrice}}</td>
 																				<td>
 																					<button wire:click="addProduct" type="button" class="btn btn-success" >Thêm</button>
 																					<button type="button" class="btn btn-info" >Xem</button>
