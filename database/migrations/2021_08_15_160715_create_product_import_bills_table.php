@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ProductImportBills extends Migration
+class CreateProductImportBillsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,12 @@ class ProductImportBills extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('product_import_bills', function (Blueprint $table) {
+            $table->id();
+			$table->biginteger('adminID');
+			$table->integer('importBillTotal');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class ProductImportBills extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('product_import_bills');
     }
 }

@@ -7,20 +7,17 @@
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Tên nhà cung cấp</th>
-									<th>Email</th>
-									<th>Số điện thoại</th>
-									<th>Trạng thái</th>
+									<th>Người tạo hóa đơn</th>
+									<th>Tổng tiền</th>
 									<th>Tùy chọn</th>
 								</tr>
 							</thead>
 							<tbody>
+								@foreach($ProductImportBills as $b)
 								<tr>	
-										<td>1</td>
-										<td>2</td>
-										<td>3</td>
-										<td>4</td>
-										<td>5</td>
+										<td>{{$b->id}}</td>
+										<td>{{$b->adminID}}</td>
+										<td>{{$b->importBillTotal}}</td>
 										<td>
 											<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Xem</button>
 											<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -63,6 +60,7 @@
 											</div>											
 										</td>
 								</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>
@@ -77,7 +75,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<div class="form-group">
+						<div class="form-group">						
 							<form role="form" wire:submit.prevent="submit">
 								@if(session()->has('success'))
 								<div class="alert alert-success">
@@ -131,6 +129,7 @@
 																	<th>ID Sản phẩm</th>
 																	<th>Tên sản phẩm</th>
 																	<th>Size</th>
+																	<th>Hiện có</th>
 																	<th>Giá sản phẩm</th>
 																	<th>Tùy chọn</th>
 																</tr>
@@ -144,6 +143,7 @@
 																					<td>{{$p->id}}</td>
 																					<td>{{$p->productName}}</td>
 																					<td>{{$m->sizeID}}</td>
+																					<td>{{$m->stock}}</td>
 																					<td>{{$p->productPrice}}</td>	
 																					<td>
 																						<button  wire:click="addProduct({{$m->id}})" type="button" class="btn btn-success" >Thêm</button>
@@ -182,6 +182,7 @@
 																	<th>ID Model Sản phẩm</th>
 																	<th>Tên sản phẩm</th>
 																	<th>Size</th>
+																	<th>Hiện có</th>
 																	<th>Số lượng</th>
 																	<th>Đơn giá</th>
 																	<th>Tùy chọn</th>
@@ -194,11 +195,18 @@
 																				<td>{{$p->id}}</td>
 																				<td>{{$p->Product->productName}}</td>
 																				<td>{{$p->sizeID}}</td>
+																				<td>{{$p->stock}}</td>
 																				<td>
 																						<input  class="form-control" wire:model="amounts.{{$p->id}}"placeholder="Nhập thông tin sản phẩm cần tìm" >
+																						@error('amounts')
+																							<p class="text-danger">{{$message}}</p>
+																						@enderror	
 																				</td>
 																				<td>
-																						<input class="form-control" wire:model="prices.{{$p->id}}"placeholder="Nhập thông tin sản phẩm cần tìm" >
+																						<input class="form-control" wire:change="onChangePrice" wire:model="prices.{{$p->id}}"placeholder="Nhập thông tin sản phẩm cần tìm" >
+																						@error('prices')
+																							<p class="text-danger">{{$message}}</p>
+																						@enderror																				
 																				</td>
 																				<td>
 																					<button wire:click="deleteRow({{$p->id}})"type="button" class="btn btn-danger" >Xóa</button>
@@ -206,8 +214,21 @@
 																			</tr>
 																		@endforeach
 																	@endif
+																	<tr>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																		<td></td>
+																		@if($billTotal!=0)
+																		<td>
+																			<label>Tổng tiền hóa đơn : {{$billTotal}} </label>
+																		</td>
+																		@endif																		
+																	</tr>
 															</tbody>
 														</table>
+														
 													</div>
 												</div>
 											</div>

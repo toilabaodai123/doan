@@ -15,6 +15,10 @@ class CreateProductImportDetailsTable extends Migration
     {
         Schema::create('product_import_details', function (Blueprint $table) {
             $table->id();
+			$table->biginteger('ImportBillID');
+			$table->biginteger('productModelID');
+			$table->integer('amount');
+			$table->integer('price');
             $table->timestamps();
         });
     }
