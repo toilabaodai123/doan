@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Supplier;
 use App\Models\Product;
+use App\Models\ProductModel;
 
 use Livewire\Component;
 
@@ -13,16 +14,27 @@ class AdminProductImportComponent extends Component
 	public $Suppliers;
 	public $supplierID;
 	public $Products;
+	public $ProductModels;
 	public $selectedProductID;
 	public $searchInputProduct;
+	
+	public $count1 =2;
+	public $sizes;
+	public $amounts;
+	public $prices;
 	
 	public $selectedProducts ;
 	public $selectedProducts2 = [];
 	
     public function render()
     {
+		
 		$this->selectedProducts = Product::whereIn('id',$this->selectedProducts2)->get();
 		$this->Suppliers = Supplier::all();
+		
+
+		
+		
 		if($this->searchInputProduct == null)
 			$this->Products = Product::where('supplierID',$this->supplierID)->where('status',1)->take(10)->get();
 		else
@@ -60,6 +72,10 @@ class AdminProductImportComponent extends Component
 	}
 	
 	public function test(){
-		dd($this->selectedProducts);
+		dd($this	);
+	}
+	
+	public function addRow(){
+		$this->count1++;
 	}
 }

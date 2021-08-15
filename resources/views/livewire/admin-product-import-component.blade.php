@@ -130,6 +130,7 @@
 																<tr>
 																	<th>ID Sản phẩm</th>
 																	<th>Tên sản phẩm</th>
+																	<th>Size</th>
 																	<th>Giá sản phẩm</th>
 																	<th>Tùy chọn</th>
 																</tr>
@@ -140,9 +141,11 @@
 																			<tr>
 																				<td>{{$p->id}}</td>
 																				<td>{{$p->productName}}</td>
-																				<td>{{$p->productPrice}}</td>
+																				<td>Size</td>
+																				<td>{{$p->productPrice}}</td>	
 																				<td>
 																					<button  wire:click="addProduct({{$p->id}})" type="button" class="btn btn-success" >Thêm</button>
+
 																					<button type="button" class="btn btn-info" >Xem</button>
 																				</td>
 																			</tr>
@@ -171,7 +174,6 @@
 																<tr>
 																	<th>ID Sản phẩm</th>
 																	<th>Tên sản phẩm</th>
-																	<th>Size</th>
 																	<th>Số lượng</th>
 																	<th>Đơn giá</th>
 																	<th>Tùy chọn</th>
@@ -184,17 +186,10 @@
 																				<td>{{$p->id}}</td>
 																				<td>{{$p->productName}}</td>
 																				<td>
-																					<select class="form-control">
-																						<option>X</option>
-																					</select>
-																					<button type="button" class="btn btn-success" >+</button>
-																					
+																						<input  class="form-control" wire:model="amounts.{{$p->id}}"placeholder="Nhập thông tin sản phẩm cần tìm" >
 																				</td>
 																				<td>
-																						<input class="form-control" placeholder="Nhập thông tin sản phẩm cần tìm" >
-																				</td>
-																				<td>
-																						<input class="form-control" placeholder="Nhập thông tin sản phẩm cần tìm" >
+																						<input class="form-control" wire:model="prices.{{$p->id}}"placeholder="Nhập thông tin sản phẩm cần tìm" >
 																				</td>
 																				<td>
 																					<button type="button" class="btn btn-danger" >Xóa</button>
