@@ -137,12 +137,13 @@
 															</thead>
 															<tbody>
 																	@if($Products)
+																		
 																		@foreach($Products as $p)
-																			@foreach($p->models as $m)
+																			@foreach($p->Models as $m)
 																				<tr>
 																					<td>{{$p->id}}</td>
 																					<td>{{$p->productName}}</td>
-																					<td>{{$m->id}}</td>
+																					<td>{{$m->sizeID}}</td>
 																					<td>{{$p->productPrice}}</td>	
 																					<td>
 																						<button  wire:click="addProduct({{$m->id}})" type="button" class="btn btn-success" >Thêm</button>
@@ -152,6 +153,10 @@
 																				</tr>
 																			@endforeach
 																		@endforeach
+																	@else
+																		<div class="form-group">
+																			<label>Chưa có sản phẩm nào trong bảng</label>
+																		</div>
 																	@endif
 															</tbody>
 														</table>
@@ -174,8 +179,9 @@
 														<table class="table table-bordered table-hover table-striped" >
 															<thead>
 																<tr>
-																	<th>ID Sản phẩm</th>
+																	<th>ID Model Sản phẩm</th>
 																	<th>Tên sản phẩm</th>
+																	<th>Size</th>
 																	<th>Số lượng</th>
 																	<th>Đơn giá</th>
 																	<th>Tùy chọn</th>
@@ -186,7 +192,8 @@
 																		@foreach($selectedProducts as $p)
 																			<tr>
 																				<td>{{$p->id}}</td>
-																				<td>{{$p->productName}}</td>
+																				<td>{{$p->Product->productName}}</td>
+																				<td>{{$p->sizeID}}</td>
 																				<td>
 																						<input  class="form-control" wire:model="amounts.{{$p->id}}"placeholder="Nhập thông tin sản phẩm cần tìm" >
 																				</td>
@@ -194,7 +201,7 @@
 																						<input class="form-control" wire:model="prices.{{$p->id}}"placeholder="Nhập thông tin sản phẩm cần tìm" >
 																				</td>
 																				<td>
-																					<button type="button" class="btn btn-danger" >Xóa</button>
+																					<button wire:click="deleteRow({{$p->id}})"type="button" class="btn btn-danger" >Xóa</button>
 																				</td>
 																			</tr>
 																		@endforeach

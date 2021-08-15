@@ -18,7 +18,6 @@ class AdminProductImportComponent extends Component
 	public $selectedProductID;
 	public $searchInputProduct;
 	
-	public $count1 =2;
 	public $sizes;
 	public $amounts;
 	public $prices;
@@ -29,8 +28,12 @@ class AdminProductImportComponent extends Component
 	
     public function render()
     {
-		$this->selectedProducts = ProductModel::whereIn('id',$this->selectedProducts2)->get();
 		$this->Suppliers = Supplier::all();
+		$this->selectedProducts = ProductModel::with('Product')->whereIn('id',$this->selectedProducts2)->get();		
+		
+		/*
+		$this->selectedProducts = Product::with('Models')->whereIn('id',$this->selectedProducts2)->get();
+		*/
 		
 
 		
@@ -68,7 +71,7 @@ class AdminProductImportComponent extends Component
 	}
 	
 	public function resetBtn(){
-		dd($this->selectedProducts2);
+		//dd($this->selectedProducts2);
 		$this->reset();
 	}
 	
@@ -78,5 +81,16 @@ class AdminProductImportComponent extends Component
 	
 	public function addRow(){
 		$this->count1++;
+	}
+	
+	public function deleteRow($id){
+
+			foreach($this->selectedProducts2 as $k=>$v){
+				if($id == $v){
+					unset($this->selectedProducts2[$k]);
+				}
+			}
+		
+		
 	}
 }
