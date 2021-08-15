@@ -138,17 +138,19 @@
 															<tbody>
 																	@if($Products)
 																		@foreach($Products as $p)
-																			<tr>
-																				<td>{{$p->id}}</td>
-																				<td>{{$p->productName}}</td>
-																				<td>Size</td>
-																				<td>{{$p->productPrice}}</td>	
-																				<td>
-																					<button  wire:click="addProduct({{$p->id}})" type="button" class="btn btn-success" >Thêm</button>
+																			@foreach($p->models as $m)
+																				<tr>
+																					<td>{{$p->id}}</td>
+																					<td>{{$p->productName}}</td>
+																					<td>{{$m->id}}</td>
+																					<td>{{$p->productPrice}}</td>	
+																					<td>
+																						<button  wire:click="addProduct({{$m->id}})" type="button" class="btn btn-success" >Thêm</button>
 
-																					<button type="button" class="btn btn-info" >Xem</button>
-																				</td>
-																			</tr>
+																						<button type="button" class="btn btn-info" >Xem</button>
+																					</td>
+																				</tr>
+																			@endforeach
 																		@endforeach
 																	@endif
 															</tbody>
@@ -162,7 +164,7 @@
 								<div class="col-lg-12" style="margin-top:30px">
 									<div class="panel panel-default">
 										<div class="panel-heading">
-											Thông tin nhập hàng @if($selectedProducts2) @foreach($selectedProducts2 as $s){ $s}  @endforeach @endif
+											Thông tin nhập hàng @if($selectedProducts2) @foreach($selectedProducts2 as $s) {{$s}}  @endforeach @endif
 										</div>
 
 										<div class="panel-body">

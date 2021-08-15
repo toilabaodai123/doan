@@ -22,24 +22,26 @@ class AdminProductImportComponent extends Component
 	public $sizes;
 	public $amounts;
 	public $prices;
+
 	
 	public $selectedProducts ;
 	public $selectedProducts2 = [];
 	
     public function render()
     {
-		
-		$this->selectedProducts = Product::whereIn('id',$this->selectedProducts2)->get();
+		$this->selectedProducts = ProductModel::whereIn('id',$this->selectedProducts2)->get();
 		$this->Suppliers = Supplier::all();
 		
 
 		
 		
 		if($this->searchInputProduct == null)
-			$this->Products = Product::where('supplierID',$this->supplierID)->where('status',1)->take(10)->get();
+			$this->Products = Product::with('Models')->where('supplierID',$this->supplierID)->where('status',1)->take(10)->get();
 		else
-			$this->Products= Product::where('productName','LIKE','%'.$this->searchInputProduct.'%')->where('status',1)->take(10)->get();
+			$this->Products= Product::with('Models')->where('productName','LIKE','%'.$this->searchInputProduct.'%')->where('status',1)->take(10)->get();
         
+		
+
 		
 		
 		
@@ -52,9 +54,8 @@ class AdminProductImportComponent extends Component
 	}
 	
 	public function addProduct($id){
+		//dd($id);
 		array_push($this->selectedProducts2,$id);
-		
-		
 	}	
 
 	
@@ -72,7 +73,7 @@ class AdminProductImportComponent extends Component
 	}
 	
 	public function test(){
-		dd($this	);
+		dd($this);
 	}
 	
 	public function addRow(){
