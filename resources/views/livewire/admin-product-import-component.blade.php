@@ -228,7 +228,9 @@
 																	</tr>
 															</tbody>
 														</table>
-														
+														<div class="form-group">
+															<button type="button" class="btn btn-success " style="float:right">Sản phẩm mới</button>
+														</div>
 													</div>
 												</div>
 											</div>
