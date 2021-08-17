@@ -137,7 +137,7 @@
 													<div class="col-lg-4">
 														
 														<label>Loại sản phẩm cấp 1</label>
-														<select class="form-control" wire:change="lv1CategoryChange" wire:model="CategoryID">
+														<select class="form-control" wire:model="CategoryID">
 															<option>Chọn danh mục</option>
 															@foreach($ProductCategories as $Category)
 																<option value="{{$Category->id}}">{{$Category->categoryName}}</option>
@@ -152,16 +152,9 @@
 													<div class="col-lg-5">
 														
 														<label>Loại sản phẩm cấp 2</label>
-														<select class="form-control" wire:model="CategoryID2">
-															<option></option>
-														@if($ProductCategories2)
-															@foreach($ProductCategories2 as $c)
-															<option value="{{$c->id}}">{{$c->category_name}} </option>
+														<select class="form-control" >
+															<option> </option>
 
-														
-
-															@endforeach
-														@endif
 														</select>
 
 

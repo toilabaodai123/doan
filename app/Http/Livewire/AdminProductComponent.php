@@ -9,7 +9,6 @@ use App\Models\ProductSize;
 use App\Models\ProductModel;
 use App\Models\Supplier;
 use App\Models\Image;
-use App\Models\Level2ProductCategory;
 use Livewire\WithFileUploads;
 
 class AdminProductComponent extends Component
@@ -19,7 +18,6 @@ class AdminProductComponent extends Component
 	public $Suppliers;
 	public $Products;
 	public $ProductCategories;
-	public $ProductCategories2;
 	public $productView;
 		
 	public $productID;
@@ -27,7 +25,6 @@ class AdminProductComponent extends Component
 	public $productPrice;
 	public $productImage;	
 	public $CategoryID;
-	public $CategoryID2;
 	public $longDesc;
 	public $shortDesc;
 	public $supplierID;
@@ -43,7 +40,6 @@ class AdminProductComponent extends Component
 	
     public function render()
     {
-		
 		$this->Products=Product::where('status',1)->get();
 		$this->ProductCategories = ProductCategory::all();
 		$this->Suppliers = Supplier::all();
@@ -64,7 +60,6 @@ class AdminProductComponent extends Component
 			$Product->shortDesc = $this->shortDesc;
 			$Product->longDesc = $this->longDesc;
 			$Product->CategoryID = $this->CategoryID;
-			$Product->CategoryID2 = $this->CategoryID2;
 			$Product->supplierID = $this->supplierID;
 			//$this->productImage->storePublicly('images', $name2);
 
@@ -101,7 +96,6 @@ class AdminProductComponent extends Component
 			$edit = Product::find($this->productID);
 			$edit->productName = $this->productName;
 			$edit->CategoryID = $this->CategoryID;
-			$edit->CategoryID2 = $this->CategoryID2;
 			$edit->productPrice = $this->productPrice;
 			$edit->shortDesc = $this->shortDesc;
 			$edit->longDesc = $this->longDesc;
@@ -151,7 +145,6 @@ class AdminProductComponent extends Component
 
 		$this->productName = $editProduct->productName;
 		$this->CategoryID = $editProduct->CategoryID;
-		$this->CategoryID2 = $editProduct->CategoryID2;
 		$this->shortDesc = $editProduct->shortDesc;
 		$this->longDesc = $editProduct->longDesc;
 		$this->productPrice = $editProduct->productPrice;
@@ -173,9 +166,5 @@ class AdminProductComponent extends Component
 		$deleteProduct->save();
 		
 		session()->flash('success','Xóa sản phẩm '.$deleteProduct->productName.' thành công!');
-	}
-	
-	public function lv1CategoryChange(){
-		$this->ProductCategories2 = Level2ProductCategory::where('lv1PCategoryID',$this->CategoryID)->get();
 	}
 }
