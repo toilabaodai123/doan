@@ -11,22 +11,22 @@
     <title>Startmin - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="{{asset('css/metisMenu.min.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/css/metisMenu.min.css')}}" rel="stylesheet">
 
     <!-- Timeline CSS -->
-    <link href="{{asset('css/timeline.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/css/timeline.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{asset('css/startmin.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/css/startmin.css')}}" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="{{asset('css/morris.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/css/morris.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -112,61 +112,7 @@
                                 </span>
                         </div>
                     </li>
-                    <li>
-                        <a href="{{url('admin-dashboard')}} class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Quản lý sản phẩm<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{url('admin-product')}}">Sản Phẩm</a>
-                            </li>
-                            <li>
-                                <a href="{{url('admin-product-category')}}">Loại sản phẩm</a>
-                            </li>	
-                            <li>
-                                <a href="{{url('admin-product')}}">Thùng rác sản Phẩm</a>
-                            </li>							
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{{url('admin/suppliers')}}"><i class="fa fa-sitemap fa-fw"></i>Quản lý nhà cung cấp</a>
-                    </li>					
-                    <li>
-                        <a href="{{url('admin/product-import')}}"><i class="fa fa-sitemap fa-fw"></i>Quản lý nhập hàng</a>
-                    </li>
-                    <li>
-                        <a href="{{url('admin-product-category')}}"><i class="fa fa-sitemap fa-fw"></i>*Quản lý người dùng</a>
-                    </li>
-                    <li>
-                        <a href="{{url('admin-product-category')}}"><i class="fa fa-sitemap fa-fw"></i>*Quản lý hình ảnh</a>
-                    </li>
-                    <li>
-                        <a href="{{url('admin-product-category')}}"><i class="fa fa-sitemap fa-fw"></i>*Quản lý kho</a>
-                    </li>
-                    <li>
-                        <a href="{{url('admin-product-category')}}"><i class="fa fa-sitemap fa-fw"></i>*Quản lý flash sale</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> *Quản lý bài viết<span class="fa arrow"></span></a>
-			            <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">Nhập hàng</a>
-                            </li>
-                            <li>
-                                <a href="#">Nhập hàng bằng file</a>
-                            </li>							
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="{{url('admin-product-category')}}"><i class="fa fa-sitemap fa-fw"></i>*Quản lý bình luận</a>
-                    </li>
-                    <li>
-                        <a href="{{url('admin-product-category')}}"><i class="fa fa-sitemap fa-fw"></i>*Quản lý hóa đơn</a>
-                    </li>					
-                    <li>
-                        <a href="{{url('admin-product-category')}}"><i class="fa fa-sitemap fa-fw"></i>*Quản lý thông tin website</a>
-                    </li>
+
 					<li class="active">
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Quản lý sản phẩm<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse in" aria-expanded="true" style="">
@@ -185,7 +131,15 @@
                                 </ul>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{url('admin/suppliers')}}"><i class="fa fa-sitemap fa-fw"></i>Quản lý nhà cung cấp</a>
                     </li>					
+                    <li>
+                        <a href="{{url('admin/product-import')}}"><i class="fa fa-sitemap fa-fw"></i>Quản lý nhập hàng</a>
+                    </li>
+
+					
                 </ul>
 
             </div>
@@ -204,16 +158,16 @@
 </div>
 
 <!-- jQuery -->
-<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('admin/js/jquery.min.js')}}"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
 
 <!-- Metis Menu Plugin JavaScript -->
-<script src="{{asset('js/metisMenu.min.js')}}"></script>
+<script src="{{asset('admin/js/metisMenu.min.js')}}"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="{{asset('js/startmin.js')}}"></script>
+<script src="{{asset('admin/js/startmin.js')}}"></script>
 
 @livewireScripts
 </body>
